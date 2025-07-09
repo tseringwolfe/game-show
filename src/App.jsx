@@ -20,7 +20,6 @@ function getRandomMovie(movieArray) {
 
 
 function App() {
-
   // themes to make fonts for website
   const fontTheme = createTheme({
     typography: {
@@ -82,7 +81,6 @@ function App() {
       .then((response) => response.json())
       .then((genreData) => {
         // we are originally fetching an object with an array inside of it from API, "genres" is the array we want to return
-        console.log("got data", genreData.genres);
         setGenreArray(genreData.genres);
       })
       .catch((error) => console.log("error", error));
@@ -119,7 +117,6 @@ function App() {
 
     //get random movie
     let movie = getRandomMovie(validMovies);
-    console.log(movie);
 
     //get movie year
     let year = movie.release_date.slice(0, 4);
@@ -178,10 +175,6 @@ function App() {
     let pageNum = getRandomInt(100).toString();
 
 
-    //checking genreID
-    console.log("genre id is: " + genreID.toString());
-
-
     //fetch the list of movies according the genre(by ID) and random page number
     fetch("https://api.themoviedb.org/3/discover/movie?api_key=" + API_KEY + "&primary_release_date.gte=2000-01-01&with_original_language=en&with_genres=" + genreID + "&page=" + pageNum, requestOptions)
       .then(response => response.json())
@@ -193,7 +186,6 @@ function App() {
         console.error('Error:', error);
       });
   }
-  console.log(movieArray);
 
   return (
     <>
